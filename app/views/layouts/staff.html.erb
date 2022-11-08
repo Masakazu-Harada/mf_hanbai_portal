@@ -4,13 +4,14 @@
     <title><%= document_title %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
     <%= stylesheet_link_tag "staff", media: "all", "data-turbolinks-track": true %>
-    <%= javascript_pack_tag "staff", "application", "data-turbolinks-track": true %>
+    <%= javascript_pack_tag "application", "data-turbolinks-track": true %>
   </head>
 
   <body>
     <div id="wrapper">
-      <%= render "staff/shared/header" %>
+      <%= render "shared/header" %>
       <div id="container">
         <%= yield %>
       </div>

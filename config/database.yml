@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: mf_hanbai_portal_production
-  username: mf_hanbai_portal
+  username: masakazu_harada
   password: <%= ENV['MF_HANBAI_PORTAL_DATABASE_PASSWORD'] %>

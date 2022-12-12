@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  config = Rails.application.config.mf-hanbai-portal
+  config = Rails.application.config.mf_hanbai_portal
 
   constraints host: config[:staff][:host] do
     namespace :staff, path: config[:staff][:path] do

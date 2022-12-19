@@ -1,9 +1,19 @@
 require "rails_helper"
 
 describe "職員によるアカウントの管理" do
+  before do
+    post staff_session_url,
+      params: {
+        saff_login_form: {
+          email: staff_member.email,
+          password: "pw"
+        }
+      }
+  end
+  
   describe "更新" do
     let(:params_hash) { attributes_for(:staff_member) }
-    let(staff_member) { create(:staff_member) }
+    let(:staff_member) { create(:staff_member) }
 
     example "email属性を変更する" do
       params_hash.merge!(email: "test@example.com")
@@ -14,7 +24,7 @@ describe "職員によるアカウントの管理" do
     end
 
     example "例外ActionController::ParameterMissingが発生" do
-      except { patch staff_account_url, params: { id: staff_member.id} }.
+      expect { patch staff_account_url, params: { id: staff_member.id} }.
         to raise_error(ActionController::ParameterMissing)
     end
 

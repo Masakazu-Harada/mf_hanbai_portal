@@ -10,11 +10,8 @@ class Admin::SessionsController < Admin::Base
 
   def create
     @form = Admin::LoginForm.new(params[:admin_login_form])
-    if @form.email.present?
-      administrator = 
-        Administrator.find_by("LOWER(email) = ?", @form.email.downcase)
-    end
-    if Admin::Authenticator.new(administrator).authenticate(@form.password)
+    administrator = Administrator.find_by("LOWER(email) = ?", @form.email.presence)
+    if administrator && Admin::Authenticator.new(administrator).authenticate(@form.password)
       if administrator.suspended?
         flash.now.alert = "アカウントが停止されています。"
         render action: "new"

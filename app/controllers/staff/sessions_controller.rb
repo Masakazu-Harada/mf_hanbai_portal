@@ -10,11 +10,8 @@ class Staff::SessionsController < Staff::Base
 
   def create
     @form = Staff::LoginForm.new(params[:staff_login_form])
-    if @form.email.present?
-      staff_member = 
-        StaffMember.find_by("LOWER(email) = ?", @form.email.downcase)
-    end
-    if Staff::Authenticator.new(staff_member).authenticate(@form.password)
+    staff_member = StaffMember.find_by("LOWER(email) = ?", @form.email.downcase)
+    if staff_member &&  Staff::Authenticator.new(staff_member).authenticate(@form.password)
       if staff_member.suspended?
         flash.now.alert = "アカウントが停止されています。"
         render action: "new"

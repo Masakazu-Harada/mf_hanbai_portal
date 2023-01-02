@@ -1,7 +1,7 @@
 shared_examples "a protected staff controller" do |controller|
   let(:args) do
     {
-      host: Rails.application.config.baukis2[:admin][:host],
+      host: Rails.application.config.mf_hanbai_portal[:admin][:host],
       controller: controller
     }
   end
@@ -24,7 +24,7 @@ end
 shared_examples "a protected singular staff controller" do |controller|
   let(:args) do
     {
-      host: Rails.application.config.baukis2[:staff][:host],
+      host: Rails.application.config.mf_hanbai_portal[:staff][:host],
       controller: controller
     }
   end

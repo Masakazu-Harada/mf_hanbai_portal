@@ -4,7 +4,7 @@ describe "職員によるアカウントの管理" do
   before do
     post staff_session_url,
       params: {
-        saff_login_form: {
+        staff_login_form: {
           email: staff_member.email,
           password: "pw"
         }
@@ -20,7 +20,7 @@ describe "職員によるアカウントの管理" do
       patch staff_account_url,
         params: { id: staff_member.id, staff_member: params_hash }
       staff_member.reload
-      except(staff_member.email).to eq("test@example.com")
+      expect(staff_member.email).to eq("test@example.com")
     end
 
     example "例外ActionController::ParameterMissingが発生" do

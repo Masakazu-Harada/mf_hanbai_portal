@@ -19,7 +19,9 @@ class Admin::Base < ApplicationController
     end
   end
 
-  private def check_account
+  private 
+  
+  def check_account
     if current_administrator && current_administrator.suspended?
       session.delete(:administrator_id)
       flash.alert = "アカウントが無効になりました。"
@@ -28,8 +30,6 @@ class Admin::Base < ApplicationController
   end
 
   TIMEOUT = 60.minutes
-
-  private 
   
   def check_timeout
     if current_administrator

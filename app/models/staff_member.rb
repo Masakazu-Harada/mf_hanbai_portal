@@ -16,6 +16,15 @@ end
   validates :family_name, :given_name, presence: true #苗字と名前の空欄をはじく
   validates :family_name_kana, :given_name_kana, presence: true, #フリガナの空欄をはじく
     format: { with: KATAKANA_REGEXP, allow_blank: true } #正規表現にマッチするかどうかを調べるformatバリデーション。withオプションで正規表現を指定する。 allow_blankオプションをtrueにすると値が空の場合バリデーションをスキップする。
+  validates :start_date, presence: true, date: {
+    after_or_equal_to: Date.new(2000, 1, 1), #after_or_equal_toで指定した日付以降のみ許可、before_or_equal_toで現在の日付以降のみ許可
+    before: -> (obj) { 1.year.from_naw.to_date } #2000年1月1日以降で且つ今日から1年後の日付より前, 1.year.from_nowはRails独特の日時記法で現在の時刻から一年後を返す。
+  }
+  validates :end_date, date: { #退職日のバリデーション
+    after: :start_date, #入社日よりも後で
+    before: -> (obj) { 1.year.from_now.to_date}
+    allow_blank:true #allow_blank trueを指定すれば空欄が許可される つまり退職日は空欄で良い
+  }
 
   def password=(raw_password)
     if raw_password.kind_of?(String)

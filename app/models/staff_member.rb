@@ -1,5 +1,15 @@
 class StaffMember < ApplicationRecord
+include StringNormalizer
+  
   has_many :events, class_name: "StaffEvent", dependent: :destroy #:staff_eventsではなく:eventsにした理由はメソッド名を短くしたかったとの事
+
+before_validation do
+  self.family_name = normalize_as_name(family_name)
+  self.given_name = normalize_as_name(given_name)
+  self.family_name_kana = normalize_as_furigana(family_name_kana)
+  self.given_name_kana = normalize_as_furigana(given_name_kana)
+end
+
 
   KATAKANA_REGEXP = /\A[\p{katakana}\u{30fc}]+\z/ #全角カタカナと長棒(長音符)の正規表現を定数のKATAKANA_REGEPへ代入
 

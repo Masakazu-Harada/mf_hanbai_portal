@@ -13,7 +13,7 @@ class StaffMember < ApplicationRecord
   
   KATAKANA_REGEXP = /\A[\p{katakana}\u{30fc}]+\z/ #全角カタカナと長棒(長音符)の正規表現を定数のKATAKANA_REGEPへ代入
   
-  validates :email, presence: true, "valid_email_2/email": ture
+  validates :email, presence: true, "valid_email_2/email": true,
     uniqueness: { case_sensitive: false }
   validates :family_name, :given_name, presence: true #苗字と名前の空欄をはじく
   validates :family_name_kana, :given_name_kana, presence: true, #フリガナの空欄をはじく

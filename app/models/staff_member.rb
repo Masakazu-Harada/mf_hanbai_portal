@@ -11,11 +11,13 @@ class StaffMember < ApplicationRecord
     self.given_name_kana = normalize_as_furigana(given_name_kana)
   end
   
+  HUMAN_NAME_REGEXP = /\A[\p{han}\p{hiragana}\p{katakana}\u{30fc}A-Za-z]+\z/
   KATAKANA_REGEXP = /\A[\p{katakana}\u{30fc}]+\z/ #全角カタカナと長棒(長音符)の正規表現を定数のKATAKANA_REGEPへ代入
   
   validates :email, presence: true, "valid_email_2/email": true,
     uniqueness: { case_sensitive: false }
-  validates :family_name, :given_name, presence: true #苗字と名前の空欄をはじく
+  validates :family_name, :given_name, presence: true, #苗字と名前の空欄をはじく
+    format: { with: HUMAN_NAME_REGEXP, allow_blank: true }
   validates :family_name_kana, :given_name_kana, presence: true, #フリガナの空欄をはじく
     format: { with: KATAKANA_REGEXP, allow_blank: true } #正規表現にマッチするかどうかを調べるformatバリデーション。withオプションで正規表現を指定する。 allow_blankオプションをtrueにすると値が空の場合バリデーションをスキップする。
   validates :start_date, presence: true, date: {

@@ -13,7 +13,8 @@ describe Staff::Authenticator do
     end
 
     example "パスワード未設定ならfalseを返す" do
-      m = build(:staff_member, password: nil)
+      # m = build(:staff_member, password: nil)
+      m = build(:staff_member)
       expect(Staff::Authenticator.new(m).authenticate(nil)).to be_falsey
     end
 

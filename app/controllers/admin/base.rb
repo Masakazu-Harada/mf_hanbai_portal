@@ -21,6 +21,7 @@ class Admin::Base < ApplicationController
     end
   end
 
+  private 
   def check_account
     if current_administrator && current_administrator.suspended?
       session.delete(:administrator_id)

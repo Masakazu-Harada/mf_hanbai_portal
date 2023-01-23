@@ -5,7 +5,7 @@
       [ :admin, event.member, :staff_events]) %>
   </td>
   <% end %>
-  <td><%= event.status %></td>
+  <td><%= StaffEvent::DESCRIPTIONS[event.status&.to_sym] %></td>
   <td class="date">
     <%= event.occurred_at.strftime("%Y/%m/%d %H:%M:%S") %>
   </td>

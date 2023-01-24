@@ -10,7 +10,8 @@ class StaffMember < ApplicationRecord
   end
 
   def active?
-    !suspended? && start_date <= Date.today &&
-      (end_date.nil? || end_date > Date.today)
+    !self.suspended? &&
+    self.start_date <= Date.today &&
+    (self.end_date.nil? || self.end_date > Date.today)
   end
 end

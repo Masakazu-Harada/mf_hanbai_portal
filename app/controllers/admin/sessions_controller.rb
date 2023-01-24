@@ -13,12 +13,8 @@ class Admin::SessionsController < Admin::Base
   def create
     @form = Admin::LoginForm.new(login_form_params)
     if @form.email.present?
-<<<<<<< HEAD
       administrator = 
         Administrator.find_by("LOWER(email) = ?", @form.email.downcase)
-=======
-      administrator = Administrator.find_by("LOWER(email) = ?", @form.email.downcase)
->>>>>>> origin/main
     end
     if Admin::Authenticator.new(administrator).authenticate(@form.password)
       if administrator.suspended?
@@ -42,13 +38,8 @@ class Admin::SessionsController < Admin::Base
     redirect_to :admin_root
   end
 
-<<<<<<< HEAD
   private
 
-=======
-  private 
-  
->>>>>>> origin/main
   def login_form_params
     params.require(:admin_login_form).permit(:email, :password)
   end

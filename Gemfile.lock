@@ -250,6 +250,10 @@ GEM
 
 PLATFORMS
   -darwin-21
+<<<<<<< HEAD
+=======
+  arm64-darwin-21
+>>>>>>> main
   arm64-darwin-22
 
 DEPENDENCIES
@@ -282,4 +286,8 @@ RUBY VERSION
    ruby 2.7.6p219
 
 BUNDLED WITH
+<<<<<<< HEAD
    2.3.25
+=======
+   2.3.14
+>>>>>>> main

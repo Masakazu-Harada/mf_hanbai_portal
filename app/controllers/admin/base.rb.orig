@@ -21,11 +21,7 @@ class Admin::Base < ApplicationController
     end
   end
 
-<<<<<<< HEAD
-=======
   private 
-  
->>>>>>> origin/main
   def check_account
     if current_administrator && current_administrator.suspended?
       session.delete(:administrator_id)
@@ -35,11 +31,7 @@ class Admin::Base < ApplicationController
   end
 
   TIMEOUT = 60.minutes
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> origin/main
   def check_timeout
     if current_administrator
       if session[:admin_last_access_time] >= TIMEOUT.ago

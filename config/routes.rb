@@ -15,7 +15,10 @@ Rails.application.routes.draw do
       root "top#index"
       get "login" => "sessions#new", as: :login
       resource :session, only: [ :create, :destroy ]
-      resources :staff_members
+      resources :staff_members do
+        resources :staff_events, only: [ :index ] #「誰」のログイン・ログアウト記録であるかstaff_membersから包んで特定している
+      end
+      resources :staff_events, only: [ :index ] #こちらは全ての職員のログイン・ログアウト記録を閲覧するためのリソース
     end
   end
 

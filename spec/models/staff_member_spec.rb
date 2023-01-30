@@ -18,8 +18,8 @@ RSpec.describe StaffMember, type: :model do
 
   describe "値の正規化" do
     example "email 前後の空白を除去" do
-      member = create(:staff_member, email: "test@example.com")
-      expect(member.email).to eq(" test@example.com")
+      member = create(:staff_member, email: " test@example.com")
+      expect(member.email).to eq("test@example.com")
     end
 
     example "emailに含まれる全角英数字記号を半角に変換" do
@@ -46,7 +46,7 @@ RSpec.describe StaffMember, type: :model do
   describe "バリデーション" do
     example "@を2個含むemailは無効" do
       member = build(:staff_member, email: "test@@example.com")
-      expect(member).not_to be_valid
+      expect(member).to be_invalid
     end
 
     example "アルファベットの表記のfamily_nameは有効" do
@@ -56,12 +56,12 @@ RSpec.describe StaffMember, type: :model do
 
     example "記号を含むfamily_nameは無効" do
       member = build(:staff_member, family_name: "試験★")
-      expect(member).not_to be_valid
+      expect(member).to be_invalid
     end
 
     example "漢字を含むfamily_name_kanaは無効" do
       member = build(:staff_member, family_name_kana: "試験")
-      expect(member).not_to be_valid
+      expect(member).to be_invalid
     end
 
     example "長音符を含むfamily_name_kanaは有効" do
@@ -72,7 +72,7 @@ RSpec.describe StaffMember, type: :model do
     example "他の職員のメールアドレスと重複したemailは無効" do
       member1 = create(:staff_member)
       member2 = build(:staff_member, email: member1.email)
-      expect(member2).not_to be_valid
+      expect(member2).to be_invalid
     end
   end
 end

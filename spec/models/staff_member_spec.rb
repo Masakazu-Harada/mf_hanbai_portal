@@ -19,7 +19,7 @@ RSpec.describe StaffMember, type: :model do
   describe "値の正規化" do
     example "email 前後の空白を除去" do
       member = create(:staff_member, email: "test@example.com")
-      expect(member.email).to eq("test@example.com")
+      expect(member.email).to eq(" test@example.com")
     end
 
     example "emailに含まれる全角英数字記号を半角に変換" do

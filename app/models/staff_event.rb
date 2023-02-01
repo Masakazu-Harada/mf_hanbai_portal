@@ -5,6 +5,8 @@ class StaffEvent < ApplicationRecord
   belongs_to :member, class_name: "StaffMember", foreign_key: "staff_member_id"
   alias_attribute :occurred_at, :created_at
 
+  enum status: { logged_in: 0, logged_out: 1, rejected: 2 }
+
   DESCRIPTIONS = {
     logged_in: "ログイン",
     logged_out: "ログアウト",

@@ -15,6 +15,11 @@ module ErrorHandlers
     render "errors/bad_request", status: 400
   end
 
+  def rescue403(e)
+    @exception = e
+    render "errors/forbidden", status: 403
+  end
+
   def rescue404(e)
     render "errors/not_found", status: 404
   end

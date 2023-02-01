@@ -1,5 +1,5 @@
 class StaffEvent < ApplicationRecord
-  scope :sorting_events, -> { order(created_at: :desc) }
+  scope :sorting_events, -> { order(created_at: :desc).includes(:member) }
   self.inheritance_column = nil
 
   belongs_to :member, class_name: "StaffMember", foreign_key: "staff_member_id"

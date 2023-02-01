@@ -7,6 +7,6 @@ class Admin::StaffEventsController < Admin::Base
       @events = StaffEvent.sorting_events
     end
     @events = 
-      @events.includes(:member).page(params[:page])
+      @events.page(params[:page])
   end
 end

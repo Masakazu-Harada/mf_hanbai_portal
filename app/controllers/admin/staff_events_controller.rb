@@ -6,7 +6,5 @@ class Admin::StaffEventsController < Admin::Base
     else
       @events = StaffEvent.sorting_events
     end
-    @events = 
-      @events.page(params[:page])
   end
 end

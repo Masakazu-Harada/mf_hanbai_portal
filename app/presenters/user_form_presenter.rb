@@ -1,0 +1,3 @@
+class UserFormPresenter < FormPresenter
+  
+end

@@ -1,5 +1,5 @@
 class Staff::CustomerForm
-  include ActiveModel::ActiveModel
+  include ActiveModel::Model
 
   attr_accessor :customer
   delegate :persisted?, to: :customer
